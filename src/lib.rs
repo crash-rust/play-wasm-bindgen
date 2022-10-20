@@ -1,11 +1,12 @@
-use std::fmt;
-use wasm_bindgen::prelude::*;
+mod timer;
 
-// When the `wee_alloc` feature is enabled, use `wee_alloc` as the global
-// allocator.
-#[cfg(feature = "wee_alloc")]
+use std::fmt;
+use timer::Timer;
+use wasm_bindgen::prelude::*;
+use wee_alloc::WeeAlloc;
+
 #[global_allocator]
-static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
+static ALLOC: WeeAlloc = WeeAlloc::INIT;
 
 #[wasm_bindgen]
 #[repr(u8)]
@@ -34,6 +35,7 @@ pub struct Universe {
 #[wasm_bindgen]
 impl Universe {
     pub fn tick(&mut self) {
+        let _timer = Timer::new("Universe::tick");
         let mut next = self.cells.clone();
 
         for row in 0..self.height {
