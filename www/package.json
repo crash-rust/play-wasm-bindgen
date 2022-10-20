@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "serve": "cd .. && wasm-pack build --target=web && cd www && webpack serve",
+    "serve": "npm install && webpack serve",
     "build": "webpack"
   },
   "keywords": [],
